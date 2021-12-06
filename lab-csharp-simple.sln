@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-Properties", "1-Properties\1-Properties.csproj", "{1E2941E4-363A-4413-98F7-C1EE05100695}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-ComplexAlgebra", "2-ComplexAlgebra\2-ComplexAlgebra.csproj", "{D9B3FDB9-709B-4030-B19E-E7E09B31FD2C}"
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6-Indexers", "6-Indexers\6-Indexers.csproj", "{BC5A15FB-8E4D-4632-887E-7AC24F16C881}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndexersTests", "6-IndexersTests\IndexersTests.csproj", "{A246532E-E575-4300-B4B0-E20BE7F0ED6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaMiaLibreria", "LaMiaLibreria\LaMiaLibreria.csproj", "{406378F4-4ABB-4C21-9930-A20664E8B118}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,5 +51,9 @@ Global
 		{A246532E-E575-4300-B4B0-E20BE7F0ED6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A246532E-E575-4300-B4B0-E20BE7F0ED6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A246532E-E575-4300-B4B0-E20BE7F0ED6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406378F4-4ABB-4C21-9930-A20664E8B118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406378F4-4ABB-4C21-9930-A20664E8B118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406378F4-4ABB-4C21-9930-A20664E8B118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406378F4-4ABB-4C21-9930-A20664E8B118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
