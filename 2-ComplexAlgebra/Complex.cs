@@ -1,5 +1,7 @@
 namespace ComplexAlgebra
 {
+
+    using System;
     /// <summary>
     /// A type for representing Complex numbers.
     /// </summary>
@@ -17,6 +19,80 @@ namespace ComplexAlgebra
     /// TODO:     - e.g. via the Equals(object) method
     public class Complex
     {
-        // TODO: fill this class\
+        private double _modulus;
+        public double Real { get; }
+        public double Imaginary { get; }
+
+        //public double Modulus { get; }
+        
+        public double Modulus 
+        {
+            get => _modulus;
+            set => _modulus = Math.Sqrt((Real * Real) + (Imaginary * Imaginary));
+        }
+        
+        public double Phase { get; }
+
+        public Complex(double real, double imaginary)
+        {
+            Real = real;
+            Imaginary = imaginary;
+        }
+        public bool Equals(Complex num)
+        {
+            if (Real == num.Real && Imaginary == num.Imaginary)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Complex Plus(Complex num) => new Complex(Real + num.Real, Imaginary + num.Imaginary); 
+
+        public Complex Minus(Complex num) => new Complex(Real - num.Real, Imaginary - num.Imaginary);
+
+        public Complex Complement() => new Complex(Real, -Imaginary);
+
+        public override String ToString()
+        {
+            if ((Real != 0) && (Imaginary  != 0))
+            {
+                if (Imaginary == 1)
+                {
+                    return $"The actual rappresentation of this number is: {Real}+i; Modulus : {Modulus}; Phase : {Phase}";
+                }
+                else if (Imaginary == -1) 
+                {
+                    return $"The actual rappresentation of this number is: {Real}-i; Modulus : {Modulus}; Phase : {Phase}";
+                }
+                else
+                {
+                    if (Imaginary > 0)
+                    {
+                        return $"The actual rappresentation of this number is: {Real}+{Imaginary}i; Modulus : {Modulus}; Phase : {Phase}";
+                    }
+                    else
+                    {
+                        return $"The actual rappresentation of this number is: {Real}-{Imaginary}i; Modulus : {Modulus}; Phase : {Phase}";
+                    }
+                }
+            }
+            else if (Imaginary == 0)
+            {
+                return $"The actual rappresentation of this number is: {Real}+ ; Modulus : {Modulus}; Phase : {Phase}";
+            }
+            else if (Imaginary == -1)
+            {
+                return $"The actual rappresentation of this number is: -i; Modulus : {Modulus}; Phase : {Phase}";
+            }
+            else
+            {
+                return $"The actual rappresentation of this number is: i; Modulus : {Modulus}; Phase : {Phase}";
+            }
+        }
+
     }
 }
