@@ -23,15 +23,9 @@ namespace ComplexAlgebra
         public double Real { get; }
         public double Imaginary { get; }
 
-        //public double Modulus { get; }
-        
-        public double Modulus 
-        {
-            get => _modulus;
-            set => _modulus = Math.Sqrt((Real * Real) + (Imaginary * Imaginary));
-        }
-        
-        public double Phase { get; }
+        public double Modulus => Math.Sqrt(Real * Real + Imaginary * Imaginary);
+
+        public double Phase => Math.Atan2(Imaginary, Real);
 
         public Complex(double real, double imaginary)
         {
