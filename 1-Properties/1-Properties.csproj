@@ -25,8 +25,4 @@
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LaMiaLibreria\LaMiaLibreria.csproj" />
-  </ItemGroup>
-
 </Project>

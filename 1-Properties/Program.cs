@@ -1,9 +1,8 @@
-using LaMiaLibreria;
-
 namespace Properties
 {
     using System;
     using System.Linq;
+    //using LaMiaLibreria;
 
     /// <summary>
     /// The seeds of italian cards.
@@ -46,7 +45,7 @@ namespace Properties
             df.Names = (Enum.GetNames(typeof(ItalianNames)).ToList());
             df.Seeds = (Enum.GetNames(typeof(ItalianSeeds)).ToList());
             
-            Console.WriteLine("$The {df.DeckSize} deck has italian cards: ");
+            Console.WriteLine($"The italian deck has {df.DeckSize} cards: ");
 
             foreach (Card c in df.Deck)
             {
