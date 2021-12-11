@@ -12,9 +12,7 @@ namespace LabdasExperiments
             foreach (var elem in newList) Console.Write(elem+" ");
         }
 
-        public delegate bool IntPredicate(int i); // è come scrivere quel interfaccia che abbiamo eliminato
-
-        static IList<int> Filter(IList<int> list, IntPredicate predicate)
+        static IList<int> Filter(IList<int> list, Predicate<int> predicate)
         {
             var l = new List<int>();
             foreach (var t in list) if (predicate(t)) l.Add(t);
