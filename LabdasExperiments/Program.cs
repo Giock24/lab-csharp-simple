@@ -7,15 +7,25 @@ namespace LabdasExperiments
     {
         static void Main(string[] args)
         {
-            var list = new List<int> (new int[] { 10, 20, 30, 40 });
-            var newList = Filter(list);
+            var list = new List<int> (new int[] { -10, 20, 30, 40 });
+            var newList = Filter(list, new OnlyPositive());
             foreach (var elem in newList) Console.Write(elem+" ");
         }
 
-        static IList<int> Filter(IList<int> list)
+        class OnlyPositive : IIntPredicate
+        {
+            public bool filter(int i) => i > 0;
+        }
+
+        interface IIntPredicate
+        {
+            bool filter(int i);
+        }
+
+        static IList<int> Filter(IList<int> list, IIntPredicate predicate)
         {
             var l = new List<int>();
-            foreach (var t in list) if (t > 0) l.Add(t);
+            foreach (var t in list) if (predicate.filter(t)) l.Add(t);
             return l;
         }
     }
