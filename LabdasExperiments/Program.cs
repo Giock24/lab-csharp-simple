@@ -5,12 +5,10 @@ namespace LabdasExperiments
 {
     public class Program
     {
-        static bool FilterPositive(int i) => i > 0;
-
         static void Main(string[] args)
         {
             var list = new List<int> (new int[] { -10, 20, 30, 40 });
-            var newList = Filter(list, new IntPredicate(FilterPositive));
+            var newList = Filter(list, delegate (int i) { return i > 0; });
             foreach (var elem in newList) Console.Write(elem+" ");
         }
 
