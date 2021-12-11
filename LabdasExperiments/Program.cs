@@ -8,7 +8,7 @@ namespace LabdasExperiments
         static void Main(string[] args)
         {
             var list = new List<int> (new int[] { -10, 20, 30, 40 });
-            var newList = Filter(list, delegate (int i) { return i > 0; });
+            var newList = Filter(list, i => i > 0 );
             foreach (var elem in newList) Console.Write(elem+" ");
         }
 
