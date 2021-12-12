@@ -21,9 +21,9 @@ namespace Calculus
     {
         static void Main(string[] args)
         {
-            // var calc = new Calculator();
+            var calc = new Calculator();
             //
-            // Console.WriteLine(calc.ToString()); // null, null
+            Console.WriteLine(calc.ToString()); // null, null
             //
             // calc.Value = new Complex(1, 0); // 1
             //

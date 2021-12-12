@@ -27,6 +27,14 @@ namespace Calculus
         public const char OperationPlus = '+';
         public const char OperationMinus = '-';
 
-        // TODO fill this class
+        private readonly Complex _numcoplex1 = new Complex(0, 0);
+        private readonly Complex _numcoplex2 = new Complex(0, 0);
+
+        public Complex DiplayCalc { get; set; } = new Complex(null, null);
+
+        public override string ToString()
+        {
+            return DiplayCalc.ToString();
+        }
     }
 }

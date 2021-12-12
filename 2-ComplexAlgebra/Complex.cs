@@ -19,15 +19,14 @@ namespace ComplexAlgebra
     /// TODO:     - e.g. via the Equals(object) method
     public class Complex
     {
-        private double _modulus;
-        public double Real { get; }
-        public double Imaginary { get; }
+        public double? Real { get; private set; } = null;
+        public double? Imaginary { get; private set; } = null;
 
-        public double Modulus => Math.Sqrt(Real * Real + Imaginary * Imaginary);
+        public double? Modulus => Math.Sqrt(Real ?? 0.0 * Real ?? 0.0 + Imaginary ?? 0.0 * Imaginary ?? 0.0);
 
-        public double Phase => Math.Atan2(Imaginary, Real);
+        public double? Phase => Math.Atan2(Imaginary ?? 0.0, Real ?? 0.0);
 
-        public Complex(double real, double imaginary)
+        public Complex(double? real, double? imaginary)
         {
             Real = real;
             Imaginary = imaginary;
@@ -44,14 +43,17 @@ namespace ComplexAlgebra
             }
         }
 
-        public Complex Plus(Complex num) => new Complex(Real + num.Real, Imaginary + num.Imaginary); 
+        public Complex Plus(Complex num) => new Complex(Real ?? 0.0 + num.Real ?? 0.0, Imaginary ?? 0.0 + num.Imaginary ?? 0.0);
 
-        public Complex Minus(Complex num) => new Complex(Real - num.Real, Imaginary - num.Imaginary);
+        public Complex Minus(Complex num) => new Complex(Real ?? 0.0 - num.Real ?? 0.0, Imaginary ?? 0.0 - num.Imaginary ?? 0.0);
 
-        public Complex Complement() => new Complex(Real, -Imaginary);
+        public Complex Complement() => new Complex(Real ?? 0.0, -Imaginary ?? 0.0);
 
         public override String ToString()
         {
+
+            return "The actual rappresentation of this number is: " + Real?.ToString() + "+i; Modulus : {Modulus}; Phase : {Phase}";
+            /*
             if ((Real != 0) && (Imaginary  != 0))
             {
                 if (Imaginary == 1)
@@ -87,6 +89,8 @@ namespace ComplexAlgebra
                 return $"The actual rappresentation of this number is: i; Modulus : {Modulus}; Phase : {Phase}";
             }
         }
+        */
 
+        }
     }
 }
