@@ -22,9 +22,9 @@ namespace ComplexAlgebra
         public double? Real { get; private set; } = null;
         public double? Imaginary { get; private set; } = null;
 
-        public double? Modulus => Math.Sqrt(Real ?? 0.0 * Real ?? 0.0 + Imaginary ?? 0.0 * Imaginary ?? 0.0);
+        public double? Modulus => Math.Sqrt(Real.Value * Real.Value + Imaginary.Value * Imaginary.Value);
 
-        public double? Phase => Math.Atan2(Imaginary ?? 0.0, Real ?? 0.0);
+        public double? Phase => Math.Atan2(Imaginary.Value, Real.Value);
 
         public Complex(double? real, double? imaginary)
         {
@@ -43,17 +43,19 @@ namespace ComplexAlgebra
             }
         }
 
-        public Complex Plus(Complex num) => new Complex(Real ?? 0.0 + num.Real ?? 0.0, Imaginary ?? 0.0 + num.Imaginary ?? 0.0);
+        public Complex Plus(Complex num) => new Complex(Real.Value + num.Real.Value, Imaginary.Value + num.Imaginary.Value);
 
-        public Complex Minus(Complex num) => new Complex(Real ?? 0.0 - num.Real ?? 0.0, Imaginary ?? 0.0 - num.Imaginary ?? 0.0);
+        public Complex Minus(Complex num) => new Complex(Real.Value - num.Real.Value, Imaginary.Value - num.Imaginary.Value);
 
-        public Complex Complement() => new Complex(Real ?? 0.0, -Imaginary ?? 0.0);
+        public Complex Complement() => new Complex(Real.Value, -Imaginary.Value);
 
         public override String ToString()
         {
+            if(IsNullable())
+            {
+                return "The Complex Number is null";
+            }
 
-            return "The actual rappresentation of this number is: " + Real?.ToString() + "+i; Modulus : {Modulus}; Phase : {Phase}";
-            /*
             if ((Real != 0) && (Imaginary  != 0))
             {
                 if (Imaginary == 1)
@@ -78,7 +80,11 @@ namespace ComplexAlgebra
             }
             else if (Imaginary == 0)
             {
-                return $"The actual rappresentation of this number is: {Real}+ ; Modulus : {Modulus}; Phase : {Phase}";
+                return $"The actual rappresentation of this number is: {Real}+null ; Modulus : {Modulus}; Phase : {Phase}";
+            }
+            else if (Real == 0)
+            {
+                return $"The actual rappresentation of this number is: null+{Imaginary} ; Modulus : {Modulus}; Phase : {Phase}";
             }
             else if (Imaginary == -1)
             {
@@ -89,8 +95,16 @@ namespace ComplexAlgebra
                 return $"The actual rappresentation of this number is: i; Modulus : {Modulus}; Phase : {Phase}";
             }
         }
-        */
 
+        private bool IsNullable()
+        {
+            if (!Real.HasValue || !Imaginary.HasValue)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }

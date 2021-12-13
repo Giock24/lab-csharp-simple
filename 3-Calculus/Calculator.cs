@@ -1,4 +1,5 @@
 using ComplexAlgebra;
+using System;
 
 namespace Calculus
 {
@@ -27,10 +28,14 @@ namespace Calculus
         public const char OperationPlus = '+';
         public const char OperationMinus = '-';
 
-        private readonly Complex _numcoplex1 = new Complex(0, 0);
-        private readonly Complex _numcoplex2 = new Complex(0, 0);
+        public Complex Numcomplex1 { get; private set; }
+        public Complex Numcomplex2 { get; private set; }
+        public Complex DiplayCalc { get; set; } = new Complex(0, 0);
 
-        public Complex DiplayCalc { get; set; } = new Complex(null, null);
+        public Complex Value
+        {
+            set => DiplayCalc = DiplayCalc.Plus(value);
+        }
 
         public override string ToString()
         {

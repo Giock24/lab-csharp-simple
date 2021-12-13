@@ -25,11 +25,11 @@ namespace Calculus
             //
             Console.WriteLine(calc.ToString()); // null, null
             //
-            // calc.Value = new Complex(1, 0); // 1
+            calc.Value = new Complex(1, 0); // 1
             //
-            // Console.WriteLine(calc.ToString()); // 1, null
+            Console.WriteLine(calc.ToString()); // 1, null
             //
-            // calc.Operation = Calculator.OperationPlus;
+            //calc.Operation = Calculator.OperationPlus;
             //
             // Console.WriteLine(calc.ToString()); // null, +
             //
