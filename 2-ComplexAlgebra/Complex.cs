@@ -49,51 +49,22 @@ namespace ComplexAlgebra
 
         public Complex Complement() => new Complex(Real.Value, -Imaginary.Value);
 
-        public override String ToString()
+        public override int GetHashCode() => HashCode.Combine(Real, Imaginary);
+
+        public override string ToString()
         {
-            if(IsNullable())
+            if (Imaginary == 0.0) return Real.ToString();
+            var imAbs = Math.Abs(Imaginary.Value);
+            var imValue = imAbs == 1.0 ? "" : imAbs.ToString();
+            string sign;
+            if (Real == 0d)
             {
-                return "The Complex Number is null";
+                sign = Imaginary > 0 ? "" : "-";
+                return sign + "i" + imValue;
             }
 
-            if ((Real != 0) && (Imaginary  != 0))
-            {
-                if (Imaginary == 1)
-                {
-                    return $"The actual rappresentation of this number is: {Real}+i; Modulus : {Modulus}; Phase : {Phase}";
-                }
-                else if (Imaginary == -1) 
-                {
-                    return $"The actual rappresentation of this number is: {Real}-i; Modulus : {Modulus}; Phase : {Phase}";
-                }
-                else
-                {
-                    if (Imaginary > 0)
-                    {
-                        return $"The actual rappresentation of this number is: {Real}+{Imaginary}i; Modulus : {Modulus}; Phase : {Phase}";
-                    }
-                    else
-                    {
-                        return $"The actual rappresentation of this number is: {Real}-{Imaginary}i; Modulus : {Modulus}; Phase : {Phase}";
-                    }
-                }
-            }
-            else if (Imaginary == 0)
-            {
-                return $"The actual rappresentation of this number is: {Real}+null ; Modulus : {Modulus}; Phase : {Phase}";
-            }
-            else if (Real == 0)
-            {
-                return $"The actual rappresentation of this number is: null+{Imaginary} ; Modulus : {Modulus}; Phase : {Phase}";
-            }
-            else if (Imaginary == -1)
-            {
-                return $"The actual rappresentation of this number is: -i; Modulus : {Modulus}; Phase : {Phase}";
-            }
-            else
-            {
-                return $"The actual rappresentation of this number is: i; Modulus : {Modulus}; Phase : {Phase}";
-            }
+            sign = Imaginary > 0 ? "+" : "-";
+            return $"{Real} {sign} i{imValue}";
         }
 
         private bool IsNullable()
