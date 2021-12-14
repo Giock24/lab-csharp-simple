@@ -28,18 +28,93 @@ namespace Calculus
         public const char OperationPlus = '+';
         public const char OperationMinus = '-';
 
-        public Complex Numcomplex1 { get; private set; }
-        public Complex Numcomplex2 { get; private set; }
-        public Complex DiplayCalc { get; set; } = new Complex(0, 0);
+        /* if 1 show DisplayCalc else show only Operator*/
+
+        private Complex _displayCal;
+        private int _whatShow = 0; 
+        private char _actualOp;
+        private int _numCompl;
+        private int _numOp;
+
+        private Complex[] _allNumCom = new Complex[100];
+        private char[] _opSaved = new char[100];
+        public Complex DiplayCalc 
+        { 
+            get => _displayCal; 
+            private set => _displayCal = value; 
+        } 
 
         public Complex Value
         {
-            set => DiplayCalc = DiplayCalc.Plus(value);
+            get => DiplayCalc;
+            set
+            {
+                _whatShow = 1;
+                double? re = value.Real;
+                double? im = value.Imaginary;
+
+                _allNumCom[_numCompl] = new Complex(re, im);
+                _numCompl++;
+                DiplayCalc = new Complex(re, im);
+            }
+        }
+
+        public char Operation
+        {
+            get => _actualOp;
+            set
+            {
+                _opSaved[_numOp] = value;
+                _numOp++;
+                _actualOp = value;
+                _whatShow = 0;
+            }    
+        }
+
+        public void ComputeResult()
+        {
+            DiplayCalc = _allNumCom[0];
+            int actualOp = 0;
+            for (int i = 0; i < _numCompl || actualOp < _numOp; )
+            {
+                if (_opSaved[actualOp] == Calculator.OperationPlus)
+                {
+                    i++;
+                    DiplayCalc = DiplayCalc.Plus(_allNumCom[i]);
+                    actualOp++;
+                }
+                else if(_opSaved[actualOp] == Calculator.OperationMinus)
+                {
+                    i++;
+                    DiplayCalc = DiplayCalc.Minus(_allNumCom[i]);
+                    actualOp++;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
+        public void Reset()
+        {
+            DiplayCalc = new Complex(0, 0);
+
+            _allNumCom.Initialize();
+            _opSaved.Initialize();
+            _numCompl = 0;
+            _numOp = 0;
         }
 
         public override string ToString()
         {
-            return DiplayCalc.ToString();
+            switch (_whatShow)
+            {
+                case 1:
+                    return $"{DiplayCalc}";
+                default:
+                    return $"{Operation}";
+            }
         }
     }
 }
