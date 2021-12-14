@@ -100,8 +100,8 @@ namespace Calculus
         {
             DiplayCalc = new Complex(0, 0);
 
-            _allNumCom.Initialize();
-            _opSaved.Initialize();
+            _allNumCom = new Complex[100];
+            _opSaved = new char[100];
             _numCompl = 0;
             _numOp = 0;
         }
