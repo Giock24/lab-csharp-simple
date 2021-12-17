@@ -223,7 +223,11 @@ namespace Iterators
         /// <returns>an infinite sequence of integers.</returns>
         public static IEnumerable<int> Integers(int start)
         {
-            yield return start++;
+            int i = start;
+            while (true)
+            {
+                yield return i++;
+            }
         }
 
         /// <summary>
