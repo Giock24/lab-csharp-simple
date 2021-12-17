@@ -201,7 +201,14 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> TakeSome<TAny>(this IEnumerable<TAny> sequence, long count)
         {
-            throw new NotImplementedException();
+            foreach (var elem in sequence)
+            {
+                if (count != 0)
+                {
+                    count--;
+                    yield return elem;
+                }
+            }
         }
 
         /// <summary>
