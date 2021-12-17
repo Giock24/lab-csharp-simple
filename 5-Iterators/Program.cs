@@ -23,6 +23,10 @@ namespace Iterators
                 }
             }
 
+            int resSum = numbers.Map(i => 1).Reduce(0, (sum, x) => sum + x);
+
+            Console.WriteLine(resSum);
+            /*
             IDictionary<int, int> occurrences = numbers
                 .Map(optN => {
                     Console.Write(optN.ToString() + ",");
@@ -44,13 +48,14 @@ namespace Iterators
 
                     return d;
                 });
-
+                */
             Console.WriteLine();
-
+            /*
             foreach (KeyValuePair<int, int> kv in occurrences)
             {
                 Console.WriteLine(kv);
             }
+            */
         }
     }
 }

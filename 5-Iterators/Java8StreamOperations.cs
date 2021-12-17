@@ -104,8 +104,21 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static TOther Reduce<TAny, TOther>(this IEnumerable<TAny> sequence, TOther seed, Func<TOther, TAny, TOther> reducer)
         {
-            //reducer(sequence, seed);
-            throw new NotImplementedException();
+            bool first = true;
+            TOther accum = default;
+            foreach (var elem in sequence)
+            {
+                if (first)
+                {
+                    first = false;
+                    accum = reducer(seed, elem);
+                }
+                else
+                {
+                    accum = reducer(accum, elem);
+                }
+            }
+            return accum;
         }
 
         /// <summary>
@@ -119,7 +132,15 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> SkipWhile<TAny>(this IEnumerable<TAny> sequence, Predicate<TAny> predicate)
         {
-            throw new NotImplementedException();
+            //bool skip = true;
+
+            foreach (var elem in sequence)
+            {
+                if (!predicate(elem))
+                {
+                    yield return elem;
+                }
+            }
         }
 
         /// <summary>
@@ -133,7 +154,19 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> SkipSome<TAny>(this IEnumerable<TAny> sequence, long count)
         {
-            throw new NotImplementedException();
+            //long sizeSequ = sequence.Map(i => 1).Reduce(0, (sum, x) => sum + x); This need for calculate size of sequence
+            long skip = 0;
+            foreach (var elem in sequence)
+            {
+                if (count > skip)
+                {
+                    skip++;
+                }
+                else
+                {
+                    yield return elem;
+                }
+            }
         }
 
         /// <summary>
