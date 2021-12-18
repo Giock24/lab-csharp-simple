@@ -42,14 +42,34 @@ namespace Properties
             return $"{this.GetType().Name}(Name={Name}, Seed={Seed}, Ordinal={Ordinal})";
         }
 
+        public bool Equals(Card other)
+        {
+            return string.Equals(Seed, other.Seed)
+                   && string.Equals(Name, other.Name)
+                   && Ordinal == other.Ordinal;
+        }
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if (obj is null)
+            {
+                return false;
+            }
+
+            if (this == obj)
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+            return this.Equals(obj as Card);
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return HashCode.Combine(Seed, Name, Ordinal);
         }
     }
 }
