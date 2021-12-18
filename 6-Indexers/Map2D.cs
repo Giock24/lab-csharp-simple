@@ -55,41 +55,66 @@ namespace Indexers
         /// <inheritdoc cref="IMap2D{TKey1, TKey2, TValue}.GetElements" />
         public IList<Tuple<TKey1, TKey2, TValue>> GetElements()
         {
-            throw new NotImplementedException();
+            IList<Tuple<TKey1, TKey2, TValue>> myList = new List<Tuple<TKey1, TKey2, TValue>>();
+            foreach (var elem in _elem2D)
+            {
+                myList.Add(Tuple.Create(elem.Key.Item1, elem.Key.Item2, elem.Value));
+            }
+            //return myList;
+
+            return _elem2D.Keys
+                .Select(tuple => Tuple.Create(tuple.Item1, tuple.Item2, _elem2D[tuple]))
+                .ToList();
         }
 
         /// <inheritdoc cref="IMap2D{TKey1, TKey2, TValue}.Fill(IEnumerable{TKey1}, IEnumerable{TKey2}, Func{TKey1, TKey2, TValue})" />
         public void Fill(IEnumerable<TKey1> keys1, IEnumerable<TKey2> keys2, Func<TKey1, TKey2, TValue> generator)
         {
-            throw new NotImplementedException();
+            foreach (var k1 in keys1)
+            {
+                foreach (var k2 in keys2)
+                {
+                    _elem2D.Add(Tuple.Create(k1, k2), generator(k1, k2));
+                }
+            }
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)" />
         public bool Equals(IMap2D<TKey1, TKey2, TValue> other)
         {
-            // TODO: improve
-            return base.Equals(other);
+            return Equals(this, other);
         }
 
         /// <inheritdoc cref="object.Equals(object?)" />
         public override bool Equals(object obj)
         {
-            // TODO: improve
-            return base.Equals(obj);
+            if (obj is null)
+            {
+                return false;
+            }
+
+            if (this == obj)
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+            return this.Equals(obj as IMap2D<TKey1, TKey2, TValue>);
         }
 
         /// <inheritdoc cref="object.GetHashCode"/>
         public override int GetHashCode()
         {
-            // TODO: improve
-            return base.GetHashCode();
+            return this != null ? GetHashCode() : 0;
         }
 
         /// <inheritdoc cref="IMap2D{TKey1, TKey2, TValue}.ToString"/>
         public override string ToString()
         {
-            // TODO: improve
-            return base.ToString();
+            return _elem2D.ToString();
         }
     }
 }
